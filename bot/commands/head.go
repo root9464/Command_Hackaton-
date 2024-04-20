@@ -65,33 +65,7 @@ func (hb *HomeworkBot) Start() {
 			}
 
 		case "/swap":
-			for i := 0; i < 3; i++ {
-				update := <-updates
-
-				if i == 0 && hb.state.SwapPhoto1 == nil && hb.state.SwapPhoto2 == nil {
-					msg := tgbotapi.NewMessage(msgChatID, "жду фото...")
-					if _, err := hb.bot.Send(msg); err != nil {
-						log.Panic(err)
-					}
-				} else if i == 1 && hb.state.SwapPhoto1 == nil {
-					msg := tgbotapi.NewMessage(msgChatID, "фото 1 получено")
-					if _, err := hb.bot.Send(msg); err != nil {
-						log.Panic(err)
-					}
-					hb.state.SwapPhoto1 = &update.Message.Photo
-				} else if i == 2 && hb.state.SwapPhoto1 != nil && hb.state.SwapPhoto2 == nil {
-					msg := tgbotapi.NewMessage(msgChatID, "фото 2 получено")
-					if _, err := hb.bot.Send(msg); err != nil {
-						log.Panic(err)
-					}
-					hb.state.SwapPhoto2 = &update.Message.Photo
-				}
-
-				if hb.state.SwapPhoto1 != nil && hb.state.SwapPhoto2 != nil {
-					//...
-				}
-
-			}
+			hb.HandleSwap(updates, msgChatID)
 		case "/hello":
 			msg := tgbotapi.NewMessage(msgChatID, "Привет")
 			_, err := hb.bot.Send(msg)
