@@ -27,12 +27,6 @@ func NewHomeworkBot(token string) (*HomeworkBot, error) {
 	}, nil
 }
 
-var (
-	photo1      *[]tgbotapi.PhotoSize
-	photo2      *[]tgbotapi.PhotoSize
-	secondPhoto bool
-)
-
 func (hb *HomeworkBot) Start() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
@@ -94,9 +88,9 @@ func (hb *HomeworkBot) Start() {
 				}
 
 				if hb.state.SwapPhoto1 != nil && hb.state.SwapPhoto2 != nil {
-					log.Fatal("ok")
-
+					//...
 				}
+
 			}
 		case "/hello":
 			msg := tgbotapi.NewMessage(msgChatID, "Привет")
