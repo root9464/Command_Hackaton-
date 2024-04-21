@@ -74,8 +74,8 @@ func (hb *HomeworkBot) Start() {
 			}
 
 		case "/check":
-			chatID := int64(000000) // ID канала
-			userID := int64(000000) // ID юзера
+			chatID := update.Message.Chat.ID // ID канала
+			userID := update.Message.From.ID // ID юзера
 			hb.checkSubscription(hb.bot, chatID, userID)
 
 		case "/pack":
