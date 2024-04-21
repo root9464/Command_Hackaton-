@@ -10,6 +10,7 @@ datasource db {
   url      = "postgres://postgres.weeiwekivxtvwxbijufw:dUZ4ME3ArmNjSEKg@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
 }
 
+
 model Chat {
   id        Int      @id @default(autoincrement())
   username  String
