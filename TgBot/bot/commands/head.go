@@ -82,7 +82,7 @@ func (hb *HomeworkBot) Start() {
 			hb.HandleCreatePack(updates, msgChatID)
 
 		case "/help":
-			msg := tgbotapi.NewMessage(msgChatID, "Вставьте ссылку в браузер: http://localhost:3000/api/chat")
+			msg := tgbotapi.NewMessage(msgChatID, "Вставьте ссылку в браузер: http://localhost:3000/chat")
 			if _, err := hb.bot.Send(msg); err != nil {
 				log.Panic(err)
 			}
