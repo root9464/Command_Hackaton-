@@ -70,7 +70,7 @@ func (hb *HomeworkBot) SwapLocal(img1 []tgbotapi.PhotoSize, img2 []string) {
 	}
 
 	// Для каждого изображения из img2
-	for i, imgPath := range img2 {
+	for index, imgPath := range img2 {
 		// Открываем файл в папке ./tmp
 		file2, err := os.Open("./tmp/" + imgPath)
 		if err != nil {
@@ -135,12 +135,14 @@ func (hb *HomeworkBot) SwapLocal(img1 []tgbotapi.PhotoSize, img2 []string) {
 			log.Println("Ошибка: не удалось отправить запрос. \n", err)
 			continue
 		}
+		if resp.StatusCode == 200 {
+			CreateDir(resp, index)
+		}
+
 		defer resp.Body.Close()
 
-		// Проверяем статус код ответа
-		if resp.StatusCode == 200 {
-			CreateDir(resp, i)
-		}
+		log.Print("\033[31mRed\033[0m", index)
+
 	}
 }
 
