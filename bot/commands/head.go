@@ -12,7 +12,7 @@ type HomeworkBot struct {
 	state struct {
 		SwapPhoto1 *[]tgbotapi.PhotoSize
 		SwapPhoto2 *[]tgbotapi.PhotoSize
-		SwapPhoto3 *[]tgbotapi.PhotoSize
+		SwapPhoto3 []string
 		Iteration  bool
 	}
 }
