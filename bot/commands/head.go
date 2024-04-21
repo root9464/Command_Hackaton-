@@ -12,6 +12,7 @@ type HomeworkBot struct {
 	state struct {
 		SwapPhoto1 *[]tgbotapi.PhotoSize
 		SwapPhoto2 *[]tgbotapi.PhotoSize
+		SwapPhoto3 *[]tgbotapi.PhotoSize
 		Iteration  bool
 	}
 }
@@ -38,7 +39,6 @@ func (hb *HomeworkBot) Start() {
 		}
 		msgChatID := update.Message.Chat.ID
 
-		//log.Print("\033[34m", iter, "\033[97m", "\n")
 		var message1, message2 string
 		switch update.Message.Text {
 		case "/test":
@@ -72,6 +72,14 @@ func (hb *HomeworkBot) Start() {
 			if err != nil {
 				log.Panic(err)
 			}
+
+		case "/check":
+			chatID := int64(000000) // ID канала
+			userID := int64(000000) // ID юзера
+			hb.checkSubscription(hb.bot, chatID, userID)
+
+		case "/pack":
+			hb.HandleCreatePack(updates, msgChatID)
 		}
 
 	}
